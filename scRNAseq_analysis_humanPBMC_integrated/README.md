@@ -1,10 +1,10 @@
-### scRNA Sequence Analysis of hPBMC using Integration Method
+# scRNA Sequence Analysis of hPBMC using Integration Method
 
 We will integrate data from the two conditions (CTRL & STIM), so that cells from the same cell type/subpopulation will cluster together.
 
 Procedure is referred to as integration/alignment. When aligning two genome sequences together, identification of shared/homologous regions can help to interpret differences between the sequences as well.
 
-# Goal
+## Goal
 To learn shared cell types/states to help enable us to compare control stimulated and control profiles for these individual cell types.
 
 ## Seurat v5 Integration
