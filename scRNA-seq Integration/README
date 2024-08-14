@@ -1,1 +1,12 @@
+## scRNA-seq Integration
+Integration of single-cell sequencing datasets across experimental batches, donors, or conditions.
+Integrative analysis helps match shared cell types and cell states across datasets. This is important to boost statistical power and facilitate accurate comparative analysis across datasets.
 
+### Integration Goals
+- Identify cell subpopulations that are present in both datasets.
+- Obtain cell-type markers that are conserved in both controls and stimulated cells.
+- Compare the datasets to find cell-type specific responses to stimulation.
+
+### Dataset
+- The dataset comes from human PBMC (Peripheral Blood Mononuclear Cells) from two conditions: (1) interferon-stimulated and (2) control cells.
+- We will integrate the two conditions together to jointly identify cell subpopulations across datasets, and then explore how each group differs across conditions.
