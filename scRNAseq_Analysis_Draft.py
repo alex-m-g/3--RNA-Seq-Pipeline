@@ -3,7 +3,17 @@ import tarfile
 import ftplib
 import gzip
 import shutil
+import scanpy as sc
+import scvi
+import seaborn as sns
+import pandas as pd
 import gc
+import numpy as np
+from scipy.sparse import csr_matrix
+import matplotlib.pyplot as plt
+import diffxpy.api as de
+from scipy import stats
+import decoupler as dc
 
 # Step 1: Download the TAR file via FTP
 def download_ftp_file(ftp_url, ftp_directory, filename, local_filename):
