@@ -231,7 +231,7 @@ def parameter_adjust(folder):
 
         sc.tl.leiden(adata, resolution = 1)
 
-        sc.pl.umap(adata, color=['leiden'], save='umap_path_0.png')
+        sc.pl.umap(adata, color=['leiden'], save='umap_cell_type_annotation_0.png')
 
         # Break after the first file is processed
         break
@@ -274,12 +274,10 @@ def processing(combined_file):
 
     sc.pl.umap(adata, color = ['cell_type'], frameon=False)
     # Save UMAP plots
-    umap_path_1 = os.path.join(output_folder, 'umap_cell_type.png')
-    sc.pl.umap(adata, color=['cell_type'], frameon=False, save=umap_path_1)
+    sc.pl.umap(adata, color=['cell_type'], frameon=False, save='umap_cell_type.png')
 
     sc.pl.umap(adata, color = ['cell_type'], frameon=False, legend_fontsize=6, legend_loc='on data')
-    umap_path_2 = os.path.join(output_folder, 'umap_cell_type_legend.png')
-    sc.pl.umap(adata, color=['cell_type'], frameon=False, legend_fontsize=6, legend_loc='on data', save=umap_path_2)
+    sc.pl.umap(adata, color=['cell_type'], frameon=False, legend_fontsize=6, legend_loc='on data', save='umap_cell_type_legend.png')
 
     adata.uns['scvi_markers'] = markers_scvi
     adata.uns['markers'] = markers
@@ -339,8 +337,7 @@ def analysis(main_file, model_file):
     up_down_regulated = dedf[-25:].gene.tolist() + dedf[:25].gene.tolist() #top 25 and bottom 25 from sorted
 
     # Generate heatmap for up/down-regulated genes
-    heatmap_path_1 = os.path.join(output_folder, 'heatmap_condition.png')
-    sc.pl.heatmap(subset, up_down_regulated, groupby='condition', swap_axes=True, save='heatmap_path_1.png')
+    sc.pl.heatmap(subset, up_down_regulated, groupby='condition', swap_axes=True, save='heatmap_condition1.png')
 
     model = scvi.model.SCVI.load(model_file, adata)
     scvi_de_at = model.differential_expression(
@@ -360,11 +357,9 @@ def analysis(main_file, model_file):
     up_down_regulated1 = scvi_de_at[-25:].index.tolist() + scvi_de_at[:25].index.tolist()
     up_down_regulated2 = scvi_de_cond[-25:].index.tolist() + scvi_de_cond[:25].index.tolist()
 
-    heatmap_path_2 = os.path.join(output_folder, 'heatmap_cell_type.png')
-    sc.pl.heatmap(subset, up_down_regulated1, groupby='cell_type', swap_axes=True, layer='scvi_normalized', log=True, save='heatmap_path_2.png')
+    sc.pl.heatmap(subset, up_down_regulated1, groupby='cell_type', swap_axes=True, layer='scvi_normalized', log=True, save='heatmap_cell_type.png')
 
-    heatmap_path_3 = os.path.join(output_folder, 'heatmap_condition_cell_type.png')
-    sc.pl.heatmap(subset, up_down_regulated2, groupby='condition', swap_axes=True, layer='scvi_normalized', log=True, save='heatmap_path_3.png')
+    sc.pl.heatmap(subset, up_down_regulated2, groupby='condition', swap_axes=True, layer='scvi_normalized', log=True, save='heatmap_condition2.png')
 
     temp = subset[subset.obs.cell_type == 'AT2']
 
