@@ -5,6 +5,7 @@ import gzip
 import shutil
 import scanpy as sc
 import scvi
+from scvi.data import anndata as scvi_anndata
 import seaborn as sns
 import pandas as pd
 import gc
@@ -17,6 +18,8 @@ import decoupler as dc
 
 def pp(csv_path):
     adata = sc.read_csv(csv_path).T
+    # Setup your AnnData object
+    scvi_anndata.setup_anndata(adata)
     sc.pp.filter_genes(adata, min_cells=10)
     sc.pp.highly_variable_genes(adata, n_top_genes=2000, subset=True, flavor='seurat_v3')
     scvi.model.SCVI.setup_anndata(adata)
@@ -65,7 +68,6 @@ def integration(folder):
 
     # Concatenate all the processed AnnData objects
     adata = sc.concat(out)
-    
     # Filter genes and save
     sc.pp.filter_genes(adata, min_cells=10)
     adata.X = csr_matrix(adata.X)  # Compress data for memory efficiency
@@ -143,7 +145,8 @@ def parameter_adjust(folder):
         
         # Read the first file into an AnnData object
         adata = sc.read_csv(file_path)
-        
+        # Setup your AnnData object
+        scvi_anndata.setup_anndata(adata)
         # Transpose the data to have cells as rows and genes as columns
         adata = adata.T
         
