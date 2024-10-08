@@ -370,7 +370,7 @@ def analysis(main_file, model_file):
 
 def main():
     sc.settings.figdir = './output/'
-    folder = './data/GSE171524_RAW'
+    folder = './data/'
     output_folder = 'output'
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)   
