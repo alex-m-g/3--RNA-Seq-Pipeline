@@ -231,7 +231,7 @@ def parameter_adjust(folder):
 
         sc.tl.leiden(adata, resolution = 1)
 
-        sc.pl.umap(adata, color=['leiden'])
+        sc.pl.umap(adata, color=['leiden'], save='umap_path_0.png')
 
         # Break after the first file is processed
         break
@@ -340,7 +340,7 @@ def analysis(main_file, model_file):
 
     # Generate heatmap for up/down-regulated genes
     heatmap_path_1 = os.path.join(output_folder, 'heatmap_condition.png')
-    sc.pl.heatmap(subset, up_down_regulated, groupby='condition', swap_axes=True, save=heatmap_path_1)
+    sc.pl.heatmap(subset, up_down_regulated, groupby='condition', swap_axes=True, save='heatmap_path_1.png')
 
     model = scvi.model.SCVI.load(model_file, adata)
     scvi_de_at = model.differential_expression(
@@ -361,10 +361,10 @@ def analysis(main_file, model_file):
     up_down_regulated2 = scvi_de_cond[-25:].index.tolist() + scvi_de_cond[:25].index.tolist()
 
     heatmap_path_2 = os.path.join(output_folder, 'heatmap_cell_type.png')
-    sc.pl.heatmap(subset, up_down_regulated1, groupby='cell_type', swap_axes=True, layer='scvi_normalized', log=True, save=heatmap_path_2)
+    sc.pl.heatmap(subset, up_down_regulated1, groupby='cell_type', swap_axes=True, layer='scvi_normalized', log=True, save='heatmap_path_2.png')
 
     heatmap_path_3 = os.path.join(output_folder, 'heatmap_condition_cell_type.png')
-    sc.pl.heatmap(subset, up_down_regulated2, groupby='condition', swap_axes=True, layer='scvi_normalized', log=True, save=heatmap_path_3)
+    sc.pl.heatmap(subset, up_down_regulated2, groupby='condition', swap_axes=True, layer='scvi_normalized', log=True, save='heatmap_path_3.png')
 
     temp = subset[subset.obs.cell_type == 'AT2']
 
@@ -374,6 +374,7 @@ def analysis(main_file, model_file):
 
 
 def main():
+    sc.settings.figdir = './output/'
     folder = './data/GSE171524_RAW'
     output_folder = 'output'
     if not os.path.exists(output_folder):
