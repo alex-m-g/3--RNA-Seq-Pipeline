@@ -23,11 +23,13 @@ Citation: Melms JC, Biermann J, Huang H, Wang Y, et al. A molecular single-cell 
 PMID: 33915568
 ## Pipeline
 [scRNA Sequence Analysis Pipeline_v3](./scRNAseq_Analysis_Pipeline_v3.py)
-## Files
-1.  [scRNA_seq_Data_Initialize](./scRNA_seq_Data_Analysis_COIVD19.ipynb): Processed a single file to fine-tune the parameters for integration.
-2.  [Integration](./scRNA_seq_Analysis_Integration.ipynb): Integrated all patient samples. Output file "combined.h5ad"
-3.  [Model Training & Cell Type Identification](./scRNA_seq_Analysis_Cell_Marker_Labeling.ipynb): Processed the "combined.h5ad" file to train SCVI model, clustering, and identify cell types. Output file "integrated.h5ad"
-4.  [Visual Analysis Development](./scRNA_seq_Analysis.ipynb): Opened the "integrated.h5ad" file to analyze and develop visualizations identify the effects of COVID-19.
+
+The program will fetch the data from the source code without needing a GitHub workflow.
+## Steps
+1.  Processed a single file to fine-tune the parameters for integration.
+2.  Integrated all patient samples. Output file "combined.h5ad"
+3.  Processed the "combined.h5ad" file to train the SCVI model, clustering, and identify cell types. Output file "integrated.h5ad"
+4.  Opened the "integrated.h5ad" file to analyze and develop visualizations to identify the effects of COVID-19.
 
 ## Results and Analysis
 ### Cell Marker Identification
