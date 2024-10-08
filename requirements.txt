@@ -2,7 +2,6 @@ scanpy
 scvi
 seaborn
 pandas
-gc
 numpy
 scipy
 matplotlib
