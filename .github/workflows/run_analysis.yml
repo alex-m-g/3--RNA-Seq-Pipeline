@@ -37,7 +37,7 @@ jobs:
       run: ls -l ./data/
 
     - name: Run scRNAseq Analysis
-      run: python scRNAseq_Analysis_v4.py
+      run: python scRNAseq_Analysis_v5.py
 
     - name: Upload analysis outputs
       uses: actions/upload-artifact@v3
