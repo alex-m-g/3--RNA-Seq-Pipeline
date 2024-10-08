@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install scanpy scvi seaborn pandas numpy scipy matplotlib diffxpy decoupler
+        pip install scanpy scvi-tools seaborn pandas numpy scipy matplotlib diffxpy decoupler
 
     - name: List contents of the data directory before extraction
       run: ls -l ./data/
