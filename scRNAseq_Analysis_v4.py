@@ -146,7 +146,7 @@ def parameter_adjust(folder):
         # Read the first file into an AnnData object
         adata = sc.read_csv(file_path)
         # Setup your AnnData object
-        scvi_anndata.setup_anndata(adata)
+        scvi.model.SCVI.setup_anndata(adata)
         # Transpose the data to have cells as rows and genes as columns
         adata = adata.T
         
