@@ -29,13 +29,14 @@ jobs:
 
     - name: Extract GSE171524_RAW.tar
       run: tar -xvf ./data/GSE171524_RAW.tar -C ./data/
-      continue-on-error: true  # This will continue even if tar fails, allowing us to debug
+      continue-on-error: true  # Continue even if this step fails
 
     - name: Verify GSE171524_RAW directory exists
       run: ls -l ./data/GSE171524_RAW
 
     - name: Run scRNAseq Analysis
-      run: python scRNAseq_Analysis_v4.py
+      run: |
+        python scRNAseq_Analysis_v4.py
 
     - name: Upload analysis outputs
       uses: actions/upload-artifact@v3
