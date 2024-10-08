@@ -1,0 +1,38 @@
+name: Run scRNAseq Analysis
+
+on:
+  push:
+    branches:
+      - main  # Adjust this if you're working on a different branch
+  workflow_dispatch: # Allows manual triggering of workflow runs
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.5'  # Adjust according to your Python version
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install scanpy scvi seaborn pandas gc numpy scipy matplotlib diffxpy decoupler
+
+    - name: Extract GSE171524_RAW.tar
+      run: tar -xvf ./data/GSE171524_RAW.tar -C ./data/
+
+    - name: Run scRNAseq Analysis
+      run: |
+        python scRNAseq_Analysis_v4.py
+
+    - name: Upload analysis outputs
+      uses: actions/upload-artifact@v3
+      with:
+        name: analysis-images
+        path: ./output/  # Adjust this path to match where your script saves the images
