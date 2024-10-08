@@ -374,7 +374,7 @@ def analysis(main_file, model_file):
 
 
 def main():
-    folder = 'GSE171524_RAW.tar'
+    folder = './data/GSE171524_RAW'
     output_folder = 'output'
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)   
