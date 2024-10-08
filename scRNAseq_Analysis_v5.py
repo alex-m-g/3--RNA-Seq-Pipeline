@@ -225,9 +225,6 @@ def parameter_adjust(file):
 
     sc.pl.umap(adata, color=['leiden'], save='umap_cell_type_annotation_0.png')
 
-    # Break after the first file is processed
-    break
-
 def processing(combined_file):
     adata = sc.read_h5ad(combined_file)
     adata.obs.groupby('Sample').count()
