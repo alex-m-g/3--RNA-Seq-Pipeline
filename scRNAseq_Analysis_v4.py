@@ -374,7 +374,10 @@ def main():
     output_folder = 'output'
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)   
-    
+    # Check if data folder exists before proceeding
+    if not os.path.exists(folder):
+        print(f"Error: Folder '{folder}' does not exist. Please check the extraction.")
+        return
     # Step 2: Run parameter adjustments
     parameter_adjust(folder)
 
@@ -383,11 +386,16 @@ def main():
     gc.collect()
 
     # Step 4: Run processing
+    if not os.path.exists('combined.h5ad'):
+        print("Error: 'combined.h5ad' file not found after integration.")
+        return
     processing('combined.h5ad')
     gc.collect()
 
-    # Step 5: Run Analysis
+    # Step 5: Run analysis
+    if not os.path.exists('integrated.h5ad') or not os.path.exists('model.model'):
+        print("Error: Required files for analysis ('integrated.h5ad' or 'model.model') are missing.")
+        return
     analysis('integrated.h5ad', 'model.model')
-
 if __name__ == "__main__":
     main()
