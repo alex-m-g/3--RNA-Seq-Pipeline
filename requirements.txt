@@ -1,0 +1,10 @@
+scanpy
+scvi
+seaborn
+pandas
+gc
+numpy
+scipy
+matplotlib
+diffxpy
+decoupler
